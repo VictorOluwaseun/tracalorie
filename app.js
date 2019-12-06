@@ -161,6 +161,8 @@ const App = (function (ItemCtrl, UICtrl) {
 		document.querySelector(UISelectors.addBtn).addEventListener("click",
 			itemAddSubmit);
 
+		// Edit icon click event
+		document.querySelector(UISelectors.itemList).addEventListener("click", itemUpdateSubmit);
 	};
 	//Add item submit
 	const itemAddSubmit = function (e) {
@@ -186,6 +188,26 @@ const App = (function (ItemCtrl, UICtrl) {
 			UICtrl.clearInput();
 		}
 	};
+
+	//Update item submit
+	const itemUpdateSubmit = function (e) {
+		e.preventDefault();
+		if (e.target.classList.contains("edit-item")) {
+			//Get list item id (item-0, item-1)
+			const listId = e.target.parentNode.parentNode.id;
+
+			//Break into an array
+			const listIdArr = listId.split("-");
+
+			//Get the actual id
+			const id = parseInt(listIdArr)[1];
+
+			//Get item
+			const itemToEdit = ItemCtrl.getItemById(id);
+		}
+
+	};
+
 	//Public Methods
 	return {
 		init: function () {
