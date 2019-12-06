@@ -46,7 +46,9 @@ const ItemCtrl = (function () {
 const UICtrl = (function () {
 	const UISelectors = {
 		itemList: "#item-list",
-		addBtn: ".add-btn"
+		addBtn: ".add-btn",
+		itemNameInput: "#item-name",
+		itemCaloriesInput: "#item-calories"
 	};
 	//Public Methods
 	return {
@@ -65,6 +67,12 @@ const UICtrl = (function () {
 
 			//Insert list items
 			document.querySelector(UISelectors.itemList).innerHTML = html;
+		},
+		getItemsInput: function () {
+			return {
+				name: document.querySelector(UISelectors.itemNameInput).value,
+				calories: document.querySelector(UISelectors.itemCaloriesInput).value
+			};
 		},
 		getSelectors: function () {
 			return UISelectors;
@@ -88,7 +96,10 @@ const App = (function (ItemCtrl, UICtrl) {
 	//Add item submit
 	const itemAddSubmit = function (e) {
 		e.preventDefault();
-		console.log("Add");
+		//Get form input from UI Controller
+		const input = UICtrl.getItemsInput();
+		console.log(input);
+
 	};
 	//Public Methods
 	return {
