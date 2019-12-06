@@ -82,6 +82,16 @@ const ItemCtrl = (function () {
 			});
 			return found;
 		},
+		deleteItem: function (item) {
+			//Get ids
+			const ids = data.items.map(item => item.id);
+
+			//Get index
+			const index = ids.indexOf(id);
+
+			//Remove item
+			data.items.splice(index, 1);
+		},
 		setCurrentItem: function (item) {
 			data.currentItem = item;
 		},
@@ -317,7 +327,6 @@ const App = (function (ItemCtrl, UICtrl) {
 		e.preventDefault();
 		//Get current item
 		const currentItem = ItemCtrl.getCurrentItem();
-
 
 	};
 	//Public Methods
