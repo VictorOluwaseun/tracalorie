@@ -209,12 +209,14 @@ const App = (function (ItemCtrl, UICtrl) {
 
 			//Break into an array
 			const listIdArr = listId.split("-");
+			console.log(listIdArr);
 
 			//Get the actual id
-			const id = parseInt(listIdArr)[1];
+			const id = parseInt(listIdArr[1]);
 
 			//Get item
 			const itemToEdit = ItemCtrl.getItemById(id);
+
 		}
 
 	};
