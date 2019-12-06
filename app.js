@@ -87,7 +87,7 @@ const ItemCtrl = (function () {
 			const ids = data.items.map(item => item.id);
 
 			//Get index
-			const index = ids.indexOf(id);
+			const index = ids.indexOf(item.id);
 
 			//Remove item
 			data.items.splice(index, 1);
@@ -327,7 +327,8 @@ const App = (function (ItemCtrl, UICtrl) {
 		e.preventDefault();
 		//Get current item
 		const currentItem = ItemCtrl.getCurrentItem();
-
+		//Delete from Data structure
+		ItemCtrl.deleteItem(currentItem);
 	};
 	//Public Methods
 	return {
