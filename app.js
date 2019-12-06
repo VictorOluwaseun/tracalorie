@@ -59,6 +59,9 @@ const UICtrl = (function () {
       </li>
 `;
 			});
+
+			//Insert list items
+			document.querySelector("#item-list").innerHTML = html;
 		}
 	};
 })();
