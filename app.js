@@ -189,8 +189,19 @@ const App = (function (ItemCtrl, UICtrl) {
 		document.querySelector(UISelectors.addBtn).addEventListener("click",
 			itemAddSubmit);
 
+		//Disable submit on enter
+		document.addEventListener("keypress", function (e) {
+			if (e.keyCode === 13 || e.which === 13) {
+				e.preventDefault();
+				return false;
+			}
+		});
+
 		// Edit icon click event
-		document.querySelector(UISelectors.itemList).addEventListener("click", itemUpdateSubmit);
+		document.querySelector(UISelectors.itemList).addEventListener("click", itemEditClick);
+
+		//Update item event
+		document.querySelector(UISelectors.updateBtn).addEventListener("click", itemUpdateSubmit);
 	};
 	//Add item submit
 	const itemAddSubmit = function (e) {
@@ -217,8 +228,8 @@ const App = (function (ItemCtrl, UICtrl) {
 		}
 	};
 
-	//Update item submit
-	const itemUpdateSubmit = function (e) {
+	//Edit item 
+	const itemEditClick = function (e) {
 		e.preventDefault();
 		if (e.target.classList.contains("edit-item")) {
 			//Get list item id (item-0, item-1)
@@ -242,6 +253,12 @@ const App = (function (ItemCtrl, UICtrl) {
 
 	};
 
+	//Update item submit
+	const itemUpdateSubmit = function (e) {
+		e.preventDefault();
+
+
+	};
 	//Public Methods
 	return {
 		init: function () {
