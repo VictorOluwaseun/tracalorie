@@ -112,6 +112,7 @@ const ItemCtrl = (function () {
 const UICtrl = (function () {
 	const UISelectors = {
 		itemList: "#item-list",
+		listItems: "#item-list li",
 		addBtn: ".add-btn",
 		updateBtn: ".update-btn",
 		deleteBtn: ".delete-btn",
@@ -157,6 +158,13 @@ const UICtrl = (function () {
 			li.innerHTML = `<strong>${item.name}: </strong> <em>${item.calories} Calories</em> <a href="#" class="secondary-content"> <i class="edit-item fa fa-pencil"></i></a>`;
 			// Insert item
 			document.querySelector(UISelectors.itemList).insertAdjacentElement("beforeend", li);
+		},
+		updateListItem: function (item) {
+			let listItems = document.querySelectorAll(UISelectors.listItems);
+
+			// Turn Node list into array
+			listItems = Array.from(listItems);
+
 		},
 		clearInput: function () {
 			document.querySelector(UISelectors.itemNameInput).value = "";
@@ -277,6 +285,8 @@ const App = (function (ItemCtrl, UICtrl) {
 		//Update item
 		const updatedItem = ItemCtrl.updatedItem(input.name, input.calories);
 
+		//Update  UI
+		UICtrl.updateListItem(updatedItem);
 	};
 	//Public Methods
 	return {
