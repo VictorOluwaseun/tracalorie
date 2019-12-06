@@ -232,6 +232,13 @@ const App = (function (ItemCtrl, UICtrl) {
 
 		//Update item event
 		document.querySelector(UISelectors.updateBtn).addEventListener("click", itemUpdateSubmit);
+
+		//Delete item event
+		document.querySelector(UISelectors.deleteBtn).addEventListener("click", itemDeleteSubmit);
+
+		//Back button event
+		document.querySelector(UISelectors.backBtn).addEventListener("click", UICtrl.clearEditState);
+
 	};
 	//Add item submit
 	const itemAddSubmit = function (e) {
@@ -303,6 +310,15 @@ const App = (function (ItemCtrl, UICtrl) {
 
 		//Clear edit state
 		UICtrl.clearEditState();
+	};
+
+	//Delete button event
+	const itemDeleteSubmit = function (e) {
+		e.preventDefault();
+		//Get current item
+		const currentItem = ItemCtrl.getCurrentItem();
+
+
 	};
 	//Public Methods
 	return {
