@@ -12,17 +12,17 @@ const ItemCtrl = (function () {
 	//Data Structure / State
 	const data = {
 		items: [{
-				id: 0,
+				id: 1,
 				name: "Steak Dinner",
 				calories: 1200
 			},
 			{
-				id: 1,
+				id: 2,
 				name: "Cookie",
 				calories: 400
 			},
 			{
-				id: 0,
+				id: 3,
 				name: "Eggs",
 				calories: 300
 			}
@@ -35,6 +35,25 @@ const ItemCtrl = (function () {
 	return {
 		getItems: function () {
 			return data.items;
+		},
+		addItem: function (name, calories) {
+			let ID;
+			//Create ID
+			if (data.items.length > 0) {
+				ID = data.items[data.items.length - 1].id + 1;
+			} else {
+				ID = 0;
+			}
+
+			//Calories to number
+			calories = parseInt(calories);
+
+			//Create new item
+			const newItem = new Item(ID, name, calories);
+
+			data.items.push(newItem);
+
+			return newItem;
 		},
 		logData: function () {
 			return data;
@@ -98,8 +117,12 @@ const App = (function (ItemCtrl, UICtrl) {
 		e.preventDefault();
 		//Get form input from UI Controller
 		const input = UICtrl.getItemsInput();
-		console.log(input);
 
+		//Check for name and calories input
+		if (input.name !== "" && input.calories !== "") {
+			//Add item
+			const newItem = ItemCtrl.addItem(input.name, input.calories);
+		}
 	};
 	//Public Methods
 	return {
