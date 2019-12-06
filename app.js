@@ -84,11 +84,11 @@ const App = (function (ItemCtrl, UICtrl) {
 		document.querySelector(UISelectors.addBtn).addEventListener("click",
 			itemAddSubmit);
 
-		//Add item submit
-		const itemAddSubmit = function (e) {
-			e.preventDefault();
-			console.log("Add");
-		};
+	};
+	//Add item submit
+	const itemAddSubmit = function (e) {
+		e.preventDefault();
+		console.log("Add");
 	};
 	//Public Methods
 	return {
@@ -100,6 +100,9 @@ const App = (function (ItemCtrl, UICtrl) {
 
 			// Populate list with items
 			UICtrl.populateItemsList(items);
+
+			//Load Event Listeners
+			loadEventListeners();
 		}
 	};
 })(ItemCtrl, UICtrl);
