@@ -30,6 +30,12 @@ const ItemCtrl = (function () {
 		currentItem: undefined,
 		totalCalories: 0
 	};
+
+	return {
+		logData: function () {
+			return data;
+		}
+	};
 })();
 
 // UI Controller
