@@ -92,6 +92,9 @@ const ItemCtrl = (function () {
 			//Remove item
 			data.items.splice(index, 1);
 		},
+		clearAllItems: function () {
+			data.items = [];
+		},
 		setCurrentItem: function (item) {
 			data.currentItem = item;
 		},
@@ -256,7 +259,7 @@ const App = (function (ItemCtrl, UICtrl) {
 		document.querySelector(UISelectors.backBtn).addEventListener("click", UICtrl.clearEditState);
 
 		//Clear items event
-		document.querySelector(UISelectors.backBtn).addEventListener("click", UICtrl.clearAllItemsClick);
+		document.querySelector(UISelectors.clearBtn).addEventListener("click", clearAllItemsClick);
 
 	};
 	//Add item submit
@@ -364,7 +367,10 @@ const App = (function (ItemCtrl, UICtrl) {
 	// Clear items event
 	const clearAllItemsClick = function (e) {
 		e.preventDefault();
+
 		//Clear all items from data structure
+		ItemCtrl.clearAllItems();
+
 	};
 	//Public Methods
 	return {
