@@ -417,6 +417,9 @@ const App = (function (ItemCtrl, StorageCtrl, UICtrl) {
 		//Update local storage
 		StorageCtrl.updateItemStorage(updatedItem);
 
+		//Show alert 
+		UICtrl.showAlert("alert-success", "Item updated!");
+
 		//Clear edit state
 		UICtrl.clearEditState();
 	};
