@@ -458,23 +458,27 @@ const App = (function (ItemCtrl, StorageCtrl, UICtrl) {
 	const clearAllItemsClick = function (e) {
 		e.preventDefault();
 
-		//Clear all items from data structure
-		ItemCtrl.clearAllItems();
+		//check if there is data
+		if (!ItemCtrl.getItems().length) {
+			UICtrl.showAlert("alert-danger", "No item to delete");
+		} else {
+			//Clear all items from data structure
+			ItemCtrl.clearAllItems();
 
+			//Get the total calories
+			const totalCalories = ItemCtrl.getTotalCalories();
 
-		//Get the total calories
-		const totalCalories = ItemCtrl.getTotalCalories();
+			//Add total calories to UI
+			UICtrl.showTotalCalories(totalCalories);
 
-		//Add total calories to UI
-		UICtrl.showTotalCalories(totalCalories);
+			//Remove from UI
+			UICtrl.removeItems();
 
-		//Remove from UI
-		UICtrl.removeItems();
+			StorageCtrl.clearItemsFromStorage();
 
-		StorageCtrl.clearItemsFromStorage();
-
-		//hide list		
-		UICtrl.hideList();
+			//hide list		
+			UICtrl.hideList();
+		}
 
 	};
 	//Public Methods
