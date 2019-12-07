@@ -9,6 +9,28 @@
   <!-- <link rel="stylesheet" href="bootstrap.min.css"> -->
   <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet"
     integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+  <style>
+    .alert {
+      display: block;
+      color: #fff;
+      text-align: center;
+      font-weight: bold;
+      font-size: medium;
+      width: 100%;
+      padding: 10px;
+      margin-bottom: 20px;
+      border-radius: 5px;
+    }
+
+    .alert-success {
+      background-color: #2196F3;
+    }
+
+    .alert-danger {
+      background-color: #ee1234;
+      color: white;
+    }
+  </style>
   <title>Tracalorie | Meal & Calorie Tracker</title>
 </head>
 
@@ -29,8 +51,9 @@
 
   <div class="container">
     <!-- Form Card -->
-    <div class="card">''
+    <div class="card">
       <div class="card-content">
+        <div class="alert"></div>
         <span class="card-title">Add Meal / Food Item</span>
         <form class="col">
           <div class="row">

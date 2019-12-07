@@ -178,7 +178,8 @@ const UICtrl = (function () {
 		clearBtn: ".clear-btn",
 		itemNameInput: "#item-name",
 		itemCaloriesInput: "#item-calories",
-		totalCalories: ".total-calories"
+		totalCalories: ".total-calories",
+		alert: ".alert"
 	};
 	//Public Methods
 	return {
@@ -197,6 +198,27 @@ const UICtrl = (function () {
 
 			//Insert list items
 			document.querySelector(UISelectors.itemList).innerHTML = html;
+		},
+		showAlert: function (className, message) {
+			UICtrl.clearAlert();
+			const alert = document.querySelector(UISelectors.alert);
+			alert.textContent = message;
+			alert.classList.add(className);
+			console.log(alert);
+
+			setTimeout(() => {
+				UICtrl.clearAlert();
+			}, 2000);
+		},
+		clearAlert: function () {
+			const currentAlert = document.querySelector(UISelectors.alert);
+			if (currentAlert.classList.contains("alert-danger")) {
+				currentAlert.classList.remove("alert-danger");
+			}
+			if (currentAlert.classList.contains("alert-success")) {
+				currentAlert.classList.remove("alert-success");
+			}
+			currentAlert.textContent = "";
 		},
 		getItemsInput: function () {
 			return {
@@ -342,6 +364,10 @@ const App = (function (ItemCtrl, StorageCtrl, UICtrl) {
 
 			//Clear fields
 			UICtrl.clearInput();
+
+			UICtrl.showAlert("alert-success", "Item added!");
+		} else {
+			UICtrl.showAlert("alert-danger", "Invalid input!");
 		}
 	};
 
