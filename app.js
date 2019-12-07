@@ -1,6 +1,36 @@
 // Storage Controller
 const StorageCtrl = (function () {
 
+	//Public methods
+	return {
+		storeItem: function (item) {
+			let items;
+			//Check if any items in LS
+			if (localStorage.getItem("items") === null) {
+				items = [];
+				//Push new item
+				items.push(item);
+				//Set LS
+				localStorage.setItem("items", JSON.stringify(items));
+			} else {
+				//Get what is already in LS
+				items = JSON.parse(localStorage.getItem("items"));
+				//Push new item
+				items.push(item);
+				//Re set LS
+				localStorage.setItem("items", JSON.stringify(items));
+			}
+		},
+		getItemsFromStorage: function () {
+			let items;
+			if (localStorage.getItem("items") === null) {
+				items = [];
+			} else {
+				items = JSON.parse(localStorage.getItem("items"));
+			}
+			return items;
+		}
+	};
 })();
 
 // Item Controller
@@ -242,7 +272,7 @@ const UICtrl = (function () {
 
 
 //App Controller
-const App = (function (ItemCtrl, UICtrl) {
+const App = (function (ItemCtrl, StorageCtrl, UICtrl) {
 	// Load event listeners
 	const loadEventListeners = function () {
 		const UISelectors = UICtrl.getSelectors();
@@ -294,6 +324,9 @@ const App = (function (ItemCtrl, UICtrl) {
 
 			//Add total calories to UI
 			UICtrl.showTotalCalories(totalCalories);
+
+			//Store in local storage
+			StorageCtrl.storeItem(newItem);
 
 			//Clear fields
 			UICtrl.clearInput();
@@ -424,7 +457,7 @@ const App = (function (ItemCtrl, UICtrl) {
 			loadEventListeners();
 		}
 	};
-})(ItemCtrl, UICtrl);
+})(ItemCtrl, StorageCtrl, UICtrl);
 
 //Initialise App
 App.init();
