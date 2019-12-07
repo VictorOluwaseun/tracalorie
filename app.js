@@ -448,6 +448,9 @@ const App = (function (ItemCtrl, StorageCtrl, UICtrl) {
 		//Clear edit state
 		UICtrl.clearEditState();
 
+		//Show alert 
+		UICtrl.showAlert("alert-success", "Item deleted!");
+
 		//fetch items from data structure
 		const items = ItemCtrl.getItems();
 
@@ -465,22 +468,24 @@ const App = (function (ItemCtrl, StorageCtrl, UICtrl) {
 		if (!ItemCtrl.getItems().length) {
 			UICtrl.showAlert("alert-danger", "No item to delete");
 		} else {
-			//Clear all items from data structure
-			ItemCtrl.clearAllItems();
+			if (confirm("Delete all?")) {
+				//Clear all items from data structure
+				ItemCtrl.clearAllItems();
 
-			//Get the total calories
-			const totalCalories = ItemCtrl.getTotalCalories();
+				//Get the total calories
+				const totalCalories = ItemCtrl.getTotalCalories();
 
-			//Add total calories to UI
-			UICtrl.showTotalCalories(totalCalories);
+				//Add total calories to UI
+				UICtrl.showTotalCalories(totalCalories);
 
-			//Remove from UI
-			UICtrl.removeItems();
+				//Remove from UI
+				UICtrl.removeItems();
 
-			StorageCtrl.clearItemsFromStorage();
+				StorageCtrl.clearItemsFromStorage();
 
-			//hide list		
-			UICtrl.hideList();
+				//hide list		
+				UICtrl.hideList();
+			}
 		}
 
 	};
